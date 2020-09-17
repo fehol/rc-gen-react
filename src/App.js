@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import './Styles/App.css';
 import './Styles/select.css';
 import './Styles/button.css';
-import './ColorInfo';
-import { hue, luminosity } from './ColorInfo.js';
+import './colorinfo';
+import { hue, luminosity } from './colorinfo.js';
 import randomColor from 'randomcolor';
 
 const App = () => {
