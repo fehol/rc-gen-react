@@ -1,6 +1,7 @@
 {
   "name": "y",
   "version": "y",
+  "license": "MIT",
   "private": true,
   "dependencies": {
     "@emotion/core": "^10.0.35",
@@ -11,8 +12,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-hook-form": "^6.8.2",
-    "react-scripts": "3.4.3",
-    "styled-components": "^5.2.0"
+    "react-scripts": "3.4.3"
   },
   "scripts": {
     "start": "react-scripts start",
