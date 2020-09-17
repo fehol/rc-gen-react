@@ -1,55 +1,67 @@
 import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import './App.css';
-import InputColor from 'react-input-color';
-import Dropdown from 'react-dropdown';
-import 'react-dropdown/style.css';
-import ReactDom from 'react-dom';
+import './Styles/App.css';
+import './Styles/select.css';
+import './Styles/button.css';
+import './ColorInfo';
+import { hue, luminosity } from './ColorInfo.js';
+import randomColor from 'randomcolor';
 
-function App() {
-  const [hex, setHex] = useState('#ffffff');
-  const randomHex = () => {
-    const Random = '#' + Math.floor(Math.random() * 16777215).toString(16);
+const App = () => {
+  const initialColor = randomColor();
+  const [color, setColor] = useState(initialColor);
+  const [colorHue, setColorHue] = useState('');
+  const [colorLightness, setColorLuminosity] = useState('');
 
-    setHex(Random);
-  };
+  function onHueChange(e) {
+    setColorHue(e.target.value);
+    setNewColor(e.target.value, colorLightness);
+  }
+
+  function onLuminosityChange(e) {
+    setColorLuminosity(e.target.value);
+    setNewColor(colorHue, e.target.value);
+  }
+
+  function setNewColor(hue, luminosity) {
+    setColor(
+      randomColor({
+        luminosity: luminosity,
+        hue: hue,
+      }),
+    );
+  }
 
   return (
-    <div>
-      <div
-        className="RandomColor"
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          backgroundColor: `${hex}`,
-          minHeight: '33.34vh',
-          overflow: 'hidden',
-          zoom: 3,
-        }}
+    <div
+      className="App"
+      style={{
+        backgroundColor: `${color}`,
+        minHeight: '33.34vh',
+        overflow: 'hidden',
+        zoom: '3',
+      }}
+    >
+      <h1>Random Color Generator</h1>
+      <h2>{color}</h2>
+      <select name="Color" onChange={onHueChange}>
+        {hue.map((value, index) => {
+          return <option id={value}>{value}</option>;
+        })}
+      </select>
+      <select name="Luminosity" onChange={onLuminosityChange}>
+        {luminosity.map((value, index) => {
+          return <option id={value}>{value}</option>;
+        })}
+      </select>
+      <button
+        class="glow-on-hover"
+        type="button"
+        onClick={() => setColor(randomColor())}
       >
-        <h3>Random Color Generator</h3>
-        <h4>{hex}</h4>
-        <button class="glow-on-hover" type="button" onClick={randomHex}>
-          Randomize
-        </button>
-      </div>
-      <div>
-        <select>
-          <option value="grapefruit">Grapefruit</option>
-          <option value="lime">Lime</option>
-          <option selected value="coconut">
-            Coconut
-          </option>
-          <option value="mango">Mango</option>
-        </select>
-      </div>
+        Random Color
+      </button>
     </div>
   );
-}
+};
 
 export default App;
-
-//https://reactjs.org/docs/forms.html
-//https://www.youtube.com/watch?time_continue=1&v=AcOjmZrcxfM&feature=emb_logo&ab_channel=HongLy
