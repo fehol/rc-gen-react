@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import './Styles/App.css';
 import './Styles/select.css';
 import './Styles/button.css';
-import './colorinfo';
-import { hue, luminosity } from './colorinfo.js';
 import randomColor from 'randomcolor';
 
 const App = () => {
@@ -11,6 +9,8 @@ const App = () => {
   const [color, setColor] = useState(initialColor);
   const [colorHue, setColorHue] = useState('');
   const [colorLightness, setColorLuminosity] = useState('');
+  const hue = ['color', 'red', 'blue', 'green', 'orange', 'violet', 'yellow'];
+  const luminosity = ['luminosity', 'light', 'dark', 'bright'];
 
   function onHueChange(e) {
     setColorHue(e.target.value);

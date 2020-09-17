@@ -1,7 +1,7 @@
 {
   "name": "y",
   "version": "y",
-  "license": "MIT",
+  "license": "y",
   "private": true,
   "dependencies": {
     "@emotion/core": "^10.0.35",
@@ -38,6 +38,5 @@
   "description": "y",
   "main": "y",
   "repository": "y",
-  "author": "y",
-  "license": "y"
+  "author": "y"
 }
